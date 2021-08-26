@@ -1,10 +1,12 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:quizz/controller/signup_controller.dart';
+import 'package:get/get.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+
+  SignUpController signUpController = Get.find();
 
   get onPressed => null;
 
@@ -28,8 +30,10 @@ class SignUp extends StatelessWidget {
                   SizedBox(height: 20),
                   Container(
                     width: double.infinity,
-                    height: 40,
+                    height: 60,
                     child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) =>signUpController.validateEmail(value!),
                       decoration: InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(color: Colors.grey[700]),
@@ -54,8 +58,13 @@ class SignUp extends StatelessWidget {
                   ),
                   Container(
                     width: double.infinity,
-                    height: 40,
+                    height: 60,
                     child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) =>signUpController.validatePassword(value!),
+                      onChanged: (val){
+                        signUpController.pass = val;
+                      },
                       decoration: InputDecoration(
                           labelText: 'Password',
                           labelStyle: TextStyle(color: Colors.grey[700]),
@@ -77,23 +86,23 @@ class SignUp extends StatelessWidget {
                   ),
                   Container(
                     width: double.infinity,
-                    height: 40,
+                    height: 60,
                     child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value)=> signUpController.confirmPassword(value!),
                       decoration: InputDecoration(
-                        labelText: 'Confirm Passsword',
-                        labelStyle: TextStyle(color: Colors.grey[700]),
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                          borderSide: BorderSide(color: Colors.purple),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                          borderSide: BorderSide(
-                            color: Colors.purple,
-                          )
-                        )
-                      ),
+                          labelText: 'Confirm Passsword',
+                          labelStyle: TextStyle(color: Colors.grey[700]),
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(color: Colors.purple),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                              borderSide: BorderSide(
+                                color: Colors.purple,
+                              ))),
                     ),
                   ),
                   SizedBox(
@@ -106,7 +115,7 @@ class SignUp extends StatelessWidget {
                     ),
                     width: double.infinity,
                     child: TextButton(
-                      onPressed: onPressed,
+                      onPressed: (){},
                       child: Text(
                         'Signup',
                         style: TextStyle(color: Colors.white),
@@ -117,18 +126,20 @@ class SignUp extends StatelessWidget {
                     height: 10,
                   ),
                   Center(
-                      child: RichText(
-                          text: TextSpan(
-                              text: 'Already Have Account ? ',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 15),
-                              children: [
-                        TextSpan(
-                            text: 'Sign Up',
-                            style: TextStyle(
-                                color: Colors.blueAccent, fontSize: 15),
-                            recognizer: TapGestureRecognizer()..onTap = () {})
-                      ])))
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Already Have Account ? ',
+                        style: TextStyle(color: Colors.black, fontSize: 15),
+                        children: [
+                          TextSpan(
+                              text: 'Sign Up',
+                              style: TextStyle(
+                                  color: Colors.blueAccent, fontSize: 15),
+                              recognizer: TapGestureRecognizer()..onTap = () {})
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ))),
     );
