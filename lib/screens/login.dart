@@ -19,16 +19,11 @@ class Login extends StatelessWidget {
                   ()=>Container(
                     child: AnimatedDefaultTextStyle(
                       child: Text('Login'),
-                      curve: loginController.animated.value ? Curves.bounceOut : Curves.bounceIn,
                       duration: Duration(seconds: 2),
-                      style: loginController.animated.value ? TextStyle(
+                      style: TextStyle(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
                         color: Colors.purple[600],
-                      ) : TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.purple,
                       ),
                     ),
                   ),
