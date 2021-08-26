@@ -21,6 +21,7 @@ class Quizz extends StatelessWidget {
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page:()=> SignUp()),
+        GetPage(name: "/login", page:()=> Login())
       ],
     );
   }
