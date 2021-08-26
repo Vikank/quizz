@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:quizz/bindings/binding.dart';
 import 'package:quizz/screens/login.dart';
 import 'package:quizz/screens/sign_up.dart';
+import 'package:quizz/screens/splash.dart';
 void main() async {
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(Quizz());
@@ -18,11 +21,7 @@ class Quizz extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: ControllerBinding(),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      getPages: [
-        GetPage(name: '/', page:()=> SignUp()),
-        GetPage(name: "/login", page:()=> Login())
-      ],
+      home: Splash(),
     );
   }
 }

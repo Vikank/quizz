@@ -15,19 +15,7 @@ class Login extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Obx(
-                  ()=>Container(
-                    child: AnimatedDefaultTextStyle(
-                      child: Text('Login'),
-                      duration: Duration(seconds: 2),
-                      style: TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.purple[600],
-                      ),
-                    ),
-                  ),
-              ),
+              Text('Login'),
               SizedBox(
                 height: 200,
               ),
@@ -40,6 +28,7 @@ class Login extends StatelessWidget {
                       width: double.infinity,
                       height: 40,
                       child: TextFormField(
+                        controller: loginController.usernameController,
                           decoration : InputDecoration(
                             labelText: "Email",
                             labelStyle: TextStyle(
@@ -68,6 +57,7 @@ class Login extends StatelessWidget {
                       width: double.infinity,
                       height: 40,
                       child: TextFormField(
+                        controller:  loginController.passwordController,
                         decoration : InputDecoration(
                           focusColor: Colors.white,
                           labelText: "Password",
