@@ -1,0 +1,5 @@
+class UserDetail {
+String emailId;
+String password;
+UserDetail({required this.emailId, required this.password});
+}

@@ -1,7 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import '../model_class/signup_detail';
+import 'package:firebase_core/firebase_core.dart';
 
 class SignUpController extends GetxController {
   String pass = '';
+
+  UserDetail userDetail = UserDetail(
+    emailId: '',
+    password: '',
+  );
+
   String? validateEmail(String value) {
     if (!GetUtils.isEmail(value)) {
       return 'Provide valid Email';
@@ -30,5 +39,23 @@ class SignUpController extends GetxController {
     else{
       return null;
     }
+  }
+  void save() {
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('users');
+    if(userDetail.emailId.isEmpty ||
+    userDetail.password.isEmpty
+    ) {
+      Get.snackbar('Alert', 'Fill all the details');
+      print('check');
+    }
+    else{
+      Map<String,dynamic> userdata = {
+        'email' : userDetail.emailId,
+        'password' : userDetail.password,
+      };
+      collectionReference.add(userdata);
+      Get.offAllNamed('login');
+    }
+
   }
 }

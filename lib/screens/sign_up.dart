@@ -34,6 +34,9 @@ class SignUp extends StatelessWidget {
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) =>signUpController.validateEmail(value!),
+                      onChanged: (value) {
+                        signUpController.userDetail.emailId = value;
+                      },
                       decoration: InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(color: Colors.grey[700]),
@@ -64,6 +67,7 @@ class SignUp extends StatelessWidget {
                       validator: (value) =>signUpController.validatePassword(value!),
                       onChanged: (val){
                         signUpController.pass = val;
+                        signUpController.userDetail.password = val;
                       },
                       decoration: InputDecoration(
                           labelText: 'Password',
@@ -115,7 +119,10 @@ class SignUp extends StatelessWidget {
                     ),
                     width: double.infinity,
                     child: TextButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        signUpController.save();
+
+                      },
                       child: Text(
                         'Signup',
                         style: TextStyle(color: Colors.white),
