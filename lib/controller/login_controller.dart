@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:quizz/screens/home.dart';
+import 'package:quizz/screens/sign_up.dart';
 
 class LoginController extends GetxController{
 
@@ -27,7 +28,9 @@ class LoginController extends GetxController{
     if (response.docs.isNotEmpty) {
       userdata.write('isLogged', true);
       userdata.write('username',usernameController.text);
-      Get.offAll(Home());
+      Get.offAll(()=> Home());
+      usernameController.clear();
+      passwordController.clear();
     } else{
       Get.snackbar("Error", "Please Enter Username & Password",snackPosition: SnackPosition.BOTTOM);
     }

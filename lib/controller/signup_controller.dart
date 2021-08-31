@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:quizz/screens/login.dart';
 import '../model_class/signup_detail';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -54,7 +55,7 @@ class SignUpController extends GetxController {
         'password' : userDetail.password,
       };
       collectionReference.add(userdata);
-      Get.offAllNamed('login');
+      Get.offAll(()=> Login());
     }
 
   }

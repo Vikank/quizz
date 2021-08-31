@@ -15,6 +15,17 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomRight,
+                      colors: <Color>[
+                        Color(0xFFAB47BC),
+                        Color(0xFFE1BEE7),
+                      ],
+                      tileMode: TileMode.decal
+                  )
+              ),
               padding: EdgeInsets.all(25),
               width: double.infinity,
               // color: Colors.redAccent,
@@ -129,24 +140,6 @@ class SignUp extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Center(
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Already Have Account ? ',
-                        style: TextStyle(color: Colors.black, fontSize: 15),
-                        children: [
-                          TextSpan(
-                              text: 'Sign Up',
-                              style: TextStyle(
-                                  color: Colors.blueAccent, fontSize: 15),
-                              recognizer: TapGestureRecognizer()..onTap = () {})
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ))),
     );
